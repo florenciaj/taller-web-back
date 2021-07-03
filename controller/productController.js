@@ -9,9 +9,11 @@ module.exports = {
 
     async getProduct(req, res) {
         const { params: { _id } } = req
-        const productFound = await ProductModel.findOne({ _id })
+        let productFound 
 
-        if (!productFound) {
+        try {
+            productFound = await ProductModel.findOne({ _id })
+        } catch (error) {
             return res.status(404).json({ message: `Product ${_id} does not exists` })
         }
         res.status(200).json(productFound)
