@@ -1,5 +1,4 @@
 const UserModel = require('../model/User')
-const { body, validationResult } = require('express-validator');
 
 module.exports = {
 
@@ -16,15 +15,6 @@ module.exports = {
     },
 
     async createUser(req, res) {
-        // const errors = validationResult(req);
-        // console.log(errors)
-        // if (!errors.isEmpty()) {
-        //     const values = req.body;
-        //     const validations = errors.array();
-        //     return res.status(400).json({ values, validations })
-        // }
-        // return res.status(201).json({ user: userCreated })
-
         const { email, name, surname, address, firebaseId } = req.body;
         let errors = validateValues(email, name, surname, address, firebaseId)
 

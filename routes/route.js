@@ -1,8 +1,7 @@
-const router = require('express').Router()
-const { getProducts, getProduct, createProduct, changeProduct, deleteProduct } = require('../controller/productController')
-const { getUser, createUser } = require('../controller/userController')
-const { body, validationResult } = require('express-validator');
-
+const router = require('express').Router();
+const { getProducts, getProduct, createProduct, changeProduct, deleteProduct } = require('../controller/productController');
+const { getUser, createUser } = require('../controller/userController');
+const { getBills, getBill, createBill } = require('../controller/billController');
 
 router.get('/api/product', getProducts)
 
@@ -14,25 +13,14 @@ router.put('/api/product/:_id', changeProduct)
 
 router.delete('/api/product/:_id', deleteProduct)
 
-
-router.get('/api/user/:firebaseId'
-    // ,
-    //     body('email', 'Ingresar un email válido')
-    //         .exists()
-    //         .isEmail(),
-    //     body('name', 'Ingresar un nombre')
-    //         .exists()
-    //         .isString()
-    //         .isLength({ min: 3 }),
-    //     body('surname', 'Ingresar un apellido')
-    //         .exists()
-    //         .isString()
-    //         .isLength({ min: 3 }),
-    //     body('address', 'Ingresar una dirección valida')
-    //         .exists()
-    //         .isLength({ min: 10 })
-    , getUser)
+router.get('/api/user/:firebaseId', getUser)
 
 router.post('/api/user', createUser)
+
+router.get('/api/bill/:_id', getBill)
+
+router.get('/api/bills', getBills)
+
+router.post('/api/bill', createBill)
 
 module.exports = router
