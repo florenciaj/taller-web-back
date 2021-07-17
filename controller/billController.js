@@ -14,7 +14,7 @@ module.exports = {
         try {
             billFound = await BillModel.findOne({ _id })
         } catch (error) {
-            return res.status(404).json({ message: `Bill ${_id} does not exists` })
+            return res.status(404).json({ message: `La compra ${_id} no existe` })
         }
         res.status(200).json(billFound)
     },
@@ -29,10 +29,10 @@ module.exports = {
             if (errors.length == 0) {
                 const bill = new BillModel({ cardName, cardNumber, cardSecurityCode, cardExpiration, products, buyer })
                 const billCreated = await bill.save()
-                return res.status(201).json({ bill: billCreated })
+                return res.status(201).json({ bill: billCreated, message: "Compra realizada con éxito" })
             }
         }
-        res.status(400).json({ message: 'Not enough properties to create a bill', errors: errors })
+        res.status(400).json({ message: 'Se deben completar todos los datos para hacer una compra', errors: errors })
     }
 }
 
